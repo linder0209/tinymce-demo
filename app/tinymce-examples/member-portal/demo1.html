@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link href="../../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+  <link type="text/css" rel="stylesheet" href="../../../bower_components/syntaxhighlighter/styles/shCoreDefault.css"/>
+
+  <style>
+    body {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <textarea id="content">
+  </textarea>
+
+  <p>&nbsp;</p>
+  <p>
+    <button id="btn">获取内容</button>
+  </p>
+</div>
+<!-- TinyMCE -->
+<script src="../../../bower_components/jquery/dist/jquery.js"></script>
+<script src="../../../bower_components/tinymce/tinymce.jquery.min.js"></script>
+<script src="../../../bower_components/tinymce/langs/zh_CN.js"></script>
+
+<script>
+  $(function () {
+    var editor = new tinymce.Editor('content', {
+      force_p_newlines: true,
+      height: 400,
+      menubar: false, //Disable all menu
+      skin: 'charcoal',
+      content_css: '../../../bower_components/bootstrap/dist/css/bootstrap.css,demo.css',
+      plugins: [
+        "autolink link image preview hr code fullscreen table textcolor charmap"
+      ],
+      toolbar: 'undo redo | bold italic underline strikethrough subscript superscript | styleselect | fontselect fontsizeselect formatselect ' +
+          '| forecolor backcolor removeformat | bullist numlist outdent indent blockquote | alignleft aligncenter alignright alignjustify | ' +
+          'hr image link unlink | charmap table code preview fullscreen',
+      init_instance_callback : function(editor) {
+        var content = '<div></div><p><br></p><p></p><h1>&lt;sample text only - not suggested for distribution&gt;</h1><h1><br></h1><h1>Notification Program Overview<br></h1><div><br></div><div>We have launched a new Mass Notification service that allows us to alert you. You opt-in to enter your contact information and subscribe to notification you care about based on your location. The information you provide is protected and will not be used for any other purpose.</div><div><br></div><p></p><h2>How It Works</h2><div><br></div><div>When we issue a notification about a potential safety hazard or concern, you will receive a message on the voice or text communication methods that you have registered. If requested for the notification, you can confirm that you have received the message and you will not be contacted by any subsequent methods regarding that &nbsp;particular notification. If you do not confirm, the system will continue to attempt to reach you at all of the contact paths that you have registered.</div><div><br></div><h2>Sign up for Notifications</h2><div><br></div><div>Create an account and add your contact and location information into the Mass Notification system. All information you provide will be kept strictly confidential.</div><div><br></div><h2>Stop Receiving Notifications</h2><div><br></div><div>You can stop receiving at any time by removing your contact information from your profile.</div><p></p>';
+        editor.setContent(content);
+      }
+
+      //statusbar : false
+    }, tinymce.EditorManager);
+    editor.render();
+
+    $('#btn').click(function(){
+      var resultContent = editor.getContent();
+      alert(resultContent);
+    });
+  });
+</script>
+</body>
+</html>

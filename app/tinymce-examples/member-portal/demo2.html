@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link href="../../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+  <link type="text/css" rel="stylesheet" href="../../../bower_components/syntaxhighlighter/styles/shCoreDefault.css"/>
+
+  <style>
+    body {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <textarea id="content">
+  </textarea>
+
+  <p>&nbsp;</p>
+
+  <p>
+    <button id="btn1">原始值</button>
+    <button id="btn2">转换后的值</button>
+  </p>
+
+  <div class="row">
+    <div class="col-md-12">
+      <pre id="val1" type="syntaxhighlighter" class="brush: js,css; html-script: true; quick-code: false; toolbar : false" >
+
+      </pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <pre id="val2" type="syntaxhighlighter" class="brush: js,css; html-script: true; quick-code: false; toolbar : false" >
+
+      </pre>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/html" id="content1">
+  <p>
+    <strong>Location name</strong><br>You
+    <font style="COLOR: rgb(153,0,0)" face="Impact">are able to add </font>multiple
+    <font style="COLOR: rgb(51,51,255)" size="5"> locations </font>
+    (i.e. home, work, childcare addresses). Location names allow you to easily
+    identify them later.
+    <br><br>
+    <strong>Address</strong>
+    <br>By providing an<font size="6">
+    <span style="FONT-FAMILY: Impact">
+      <span style="COLOR: rgb(153,0,0)"> address you </span>
+    </span>
+  </font>will be able<font style="COLOR: rgb(0,102,0)" size="6"> to re
+    <span style="COLOR: rgb(255,102,102)">ceiv</span>
+    e alerts
+  </font>
+    that affect a specific location (i.e weather, evacuations, etc.). <br>
+    The more address infor
+  <span style="COLOR: rgb(255,153,255)">
+    <span style="BACKGROUND-COLOR: rgb(51,51,255)">
+      <span style="FONT-FAMILY: Narrow">
+      <font size="5">mation you provid</font>
+      </span>
+    </span>
+  </span>
+    e here, the better our
+    <font style="color:rgb(255,102,0);"> ability to get </font>your match.</p>
+</script>
+<!-- TinyMCE -->
+<script src="../../../bower_components/jquery/dist/jquery.js"></script>
+<script src="../../../bower_components/tinymce/tinymce.jquery.min.js"></script>
+<script src="../../../bower_components/tinymce/langs/zh_CN.js"></script>
+
+
+<script type="text/javascript" src="../../../bower_components/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../../bower_components/syntaxhighlighter/scripts/shBrushXml.js"></script>
+<script type="text/javascript" src="../../../bower_components/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+
+<script>
+  $(function () {
+    var editor = new tinymce.Editor('content', {
+      force_p_newlines: true,
+      height: 200,
+      menubar: false, //Disable all menu
+      skin: 'charcoal',
+      content_css: '../../../bower_components/bootstrap/dist/css/bootstrap.css,demo.css',
+      plugins: [
+        "autolink link image preview hr code fullscreen table textcolor charmap"
+      ],
+      toolbar: 'undo redo | bold italic underline strikethrough subscript superscript | styleselect | fontselect fontsizeselect formatselect ' +
+          '| forecolor backcolor removeformat | bullist numlist outdent indent blockquote | alignleft aligncenter alignright alignjustify | ' +
+          'hr image link unlink | charmap table code preview fullscreen',
+      init_instance_callback: function (editor) {
+        var content = $('#content1').html();
+            editor.setContent(content);
+      }
+
+      //statusbar : false
+    }, tinymce.EditorManager);
+    editor.render();
+
+    $('#btn1').click(function () {
+      var content = $('#content1').html();
+      $('#val1').text(content);
+      SyntaxHighlighter.highlight();
+    });
+
+    $('#btn2').click(function () {
+      var resultContent = editor.getContent();
+      //alert(resultContent);
+      $('#val2').text(resultContent);
+      SyntaxHighlighter.highlight();
+    });
+  });
+</script>
+</body>
+</html>

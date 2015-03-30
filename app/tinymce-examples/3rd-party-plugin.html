@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <style>
+    body {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <textarea>
+  </textarea>
+</div>
+<!-- TinyMCE -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/tinymce/tinymce.min.js"></script>
+<script src="../bower_components/tinymce/langs/zh_CN.js"></script>
+
+<script>
+  $(function () {
+    tinymce.init({
+      selector: "textarea",
+      height: 500,
+      plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste",
+        "idv_cards tabindex smileys"
+      ],
+      toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | " +
+          "bullist numlist outdent indent | link image",
+        "idv_cards tabindex smileys"],
+      improvedcode_options: {
+        height: 580, indentUnit: 4, tabSize: 4, lineNumbers: true, autoIndent: true, theme: 'monokai'
+      }
+
+    });
+  });
+</script>
+</body>
+</html>

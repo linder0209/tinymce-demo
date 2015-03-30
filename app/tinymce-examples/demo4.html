@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <style>
+    body {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <textarea name="content" id="content" style="width:100%">
+
+  </textarea>
+
+  <p>
+    <button id="setContent" class="btn btn-default">设置内容</button>
+  </p>
+</div>
+<!-- TinyMCE -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/tinymce/tinymce.jquery.min.js"></script>
+<script src="../bower_components/tinymce/langs/zh_CN.js"></script>
+<script>
+  $(function () {
+    tinymce.init({
+      selector: "#content",
+      height: 500,
+      plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste hr paste pagebreak spellchecker visualchars nonbreaking save directionality emoticons template textcolor"
+      ],
+      toolbar: ["newdocument bold italic underline strikethrough alignleft aligncenter alignright alignjustify styleselect formatselect fontselect fontsizeselect",
+        "cut copy paste bullist numlist outdent indent blockquote undo redo removeformat subscript superscript",
+        "hr link unlink image charmap pastetext print preview anchor pagebreak spellchecker searchreplace visualblocks visualchars",
+        "code fullscreen insertdatetime media nonbreaking save cancel table ltr rtl emoticons template forecolor backcolor"
+      ]
+    });
+
+    $('#setContent').click(function(){
+      var editor = tinymce.EditorManager.get('content');
+      editor.setContent('内容');
+    });
+  });
+</script>
+</body>
+</html>
